@@ -113,6 +113,7 @@ const personJsonLd = {
       "MySQL",
       "RESTful APIs",
       "Role-Based Access Control (RBAC)",
+      "AI-Augmented Software Engineering (Gemini, Claude, ChatGPT)",
       "Aviation & Cargo Logistics Systems",
     ],
   },

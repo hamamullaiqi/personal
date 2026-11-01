@@ -105,8 +105,8 @@ const workflowHabits = [
   },
   {
     icon: Gauge,
-    label: "Performance & SLA Focused",
-    label_id: "Berorientasi Performa & Stabilitas 24/7",
+    label: "AI-Accelerated (Gemini, Claude, ChatGPT)",
+    label_id: " Produktif dengan AI (Gemini, Claude, ChatGPT)",
   },
   {
     icon: Compass,

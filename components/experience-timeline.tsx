@@ -179,6 +179,9 @@ export function ExperienceTimeline() {
                       "RBAC",
                       "Git",
                       "Docker",
+                      "Gemini",
+                      "Claude",
+                      "ChatGPT",
                     ].map((skill) => (
                       <Badge key={skill} variant="secondary">
                         {skill}

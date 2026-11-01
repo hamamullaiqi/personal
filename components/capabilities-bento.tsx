@@ -7,6 +7,7 @@ import {
   Network,
   Database,
   ShieldAlert,
+  Sparkles,
   CheckCircle2,
   Layers,
 } from "lucide-react";
@@ -118,6 +119,34 @@ const capabilities = [
       "Deployment terstandarisasi dengan Docker dan monitoring layanan untuk operasional 24/7",
     ],
   },
+  {
+    id: "ai-workflow",
+    title: "AI-Augmented Engineering Workflow",
+    title_id: "Pengembangan Lebih Cepat dengan AI (AI-Augmented Engineering)",
+    icon: Sparkles,
+    span: "md:col-span-12",
+    stack: [
+      "Gemini",
+      "Claude",
+      "ChatGPT",
+      "AI-Assisted Debugging",
+      "Automated Code Review & Docs",
+    ],
+    focus:
+      "Leveraging modern AI models (Gemini, Claude, ChatGPT) as daily engineering force-multipliers to accelerate feature delivery, explore edge cases, and streamline refactoring—while maintaining strict human verification over architecture, security, and production code quality.",
+    focus_id:
+      "Memanfaatkan AI modern (Gemini, Claude, ChatGPT) dalam alur kerja harian untuk mempercepat pembuatan fitur, menelusuri bug kompleks, dan merapikan dokumentasi—dengan tetap memegang kendali penuh atas kualitas kode, keamanan, dan keputusan arsitektur.",
+    highlights: [
+      "Faster prototyping of React/TypeScript components, complex MongoDB aggregations, and API schemas",
+      "Deep root-cause analysis, edge-case simulation, and refactoring with Gemini & Claude",
+      "100% human-reviewed, type-safe, and production-tested code before every commit",
+    ],
+    highlights_id: [
+      "Mempercepat pembuatan boilerplate komponen React/TypeScript, query agregasi, dan skema API",
+      "Diskusi solusi arsitektur, pencarian akar masalah (debugging), dan simulasi edge-case bersama Gemini, Claude, & ChatGPT",
+      "Setiap baris kode tetap diverifikasi manual, type-safe, dan diuji penuh sebelum masuk ke produksi",
+    ],
+  },
 ];
 
 export function CapabilitiesBento() {
@@ -181,7 +210,7 @@ export function CapabilitiesBento() {
                         <Icon className="h-6 w-6" />
                       </div>
                       <span className="font-mono text-xs text-slate-400 dark:text-zinc-500">
-                        0{index + 1} / 04
+                        0{index + 1} / 0{capabilities.length}
                       </span>
                     </div>
                     <CardTitle className="text-xl sm:text-2xl transition-colors group-hover:text-blue-600 dark:group-hover:text-sky-300">
