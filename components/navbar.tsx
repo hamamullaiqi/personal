@@ -46,6 +46,10 @@ export function Navbar() {
       href: "#principles",
     },
     {
+      label: lang === "id" ? "Tulisan" : "Notes",
+      href: "#notes",
+    },
+    {
       label: lang === "id" ? "Pengalaman" : "Experience",
       href: "#experience",
     },
@@ -83,12 +87,12 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden items-center gap-1 rounded-full border border-slate-200/90 bg-white/80 px-3 py-1.5 shadow-sm backdrop-blur-md dark:border-blue-950/50 dark:bg-zinc-900/60 md:flex">
+        <nav className="hidden items-center gap-0.5 rounded-full border border-slate-200/90 bg-white/80 px-2 py-1 shadow-sm backdrop-blur-md dark:border-blue-950/50 dark:bg-zinc-900/60 lg:flex">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="rounded-full px-4 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:bg-blue-50 hover:text-blue-600 dark:text-zinc-300 dark:hover:bg-blue-600/15 dark:hover:text-sky-300"
+              className="rounded-full px-3 py-1 text-xs font-medium text-slate-600 transition-colors hover:bg-blue-50 hover:text-blue-600 dark:text-zinc-300 dark:hover:bg-blue-600/15 dark:hover:text-sky-300 xl:px-3.5 xl:text-sm"
             >
               {item.label}
             </a>
@@ -96,17 +100,17 @@ export function Navbar() {
         </nav>
 
         {/* Actions */}
-        <div className="hidden items-center gap-2.5 md:flex">
+        <div className="hidden items-center gap-2 lg:flex">
           {/* Language Switcher EN | ID */}
           <div
-            className="flex h-10 items-center rounded-xl border border-slate-200 bg-white p-1 text-xs font-semibold dark:border-zinc-800 dark:bg-zinc-900/60"
+            className="flex h-9 items-center rounded-xl border border-slate-200 bg-white p-0.5 text-xs font-semibold dark:border-zinc-800 dark:bg-zinc-900/60"
             role="group"
             aria-label="Language switcher"
           >
             <button
               type="button"
               onClick={() => setLang("en")}
-              className={`rounded-lg px-2.5 py-1 transition-all ${
+              className={`rounded-lg px-2 py-1 transition-all ${
                 lang === "en"
                   ? "bg-blue-600 text-white shadow-sm"
                   : "text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-zinc-100"
@@ -117,7 +121,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setLang("id")}
-              className={`rounded-lg px-2.5 py-1 transition-all ${
+              className={`rounded-lg px-2 py-1 transition-all ${
                 lang === "id"
                   ? "bg-blue-600 text-white shadow-sm"
                   : "text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-zinc-100"
@@ -131,7 +135,7 @@ export function Navbar() {
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               aria-label="Toggle color theme"
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition-colors hover:border-blue-500/40 hover:text-blue-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400 dark:hover:text-sky-300"
+              className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition-colors hover:border-blue-500/40 hover:text-blue-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400 dark:hover:text-sky-300"
               title="Toggle theme"
             >
               {theme === "dark" ? (
@@ -141,16 +145,16 @@ export function Navbar() {
               )}
             </button>
           )}
-          <Button asChild size="sm" className="h-10 gap-2 rounded-xl px-4">
+          <Button asChild size="sm" className="h-9 gap-1.5 rounded-xl px-3 text-xs xl:px-4 xl:text-sm">
             <a href="#booking">
-              <Mail className="h-4 w-4" />
+              <Mail className="h-3.5 w-3.5" />
               <span>{lang === "id" ? "Hubungi Saya" : "Get in Touch"}</span>
             </a>
           </Button>
         </div>
 
-        {/* Mobile menu button */}
-        <div className="flex items-center gap-2 md:hidden">
+        {/* Mobile / Tablet menu button */}
+        <div className="flex items-center gap-2 lg:hidden">
           <button
             type="button"
             onClick={() => setLang(lang === "en" ? "id" : "en")}
@@ -187,9 +191,9 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Dropdown */}
+      {/* Mobile / Tablet Dropdown */}
       {mobileMenuOpen && (
-        <div className="border-b border-slate-200 bg-white/95 px-4 pt-2 pb-6 backdrop-blur-xl dark:border-blue-950/60 dark:bg-[#0B0F19]/95 md:hidden">
+        <div className="border-b border-slate-200 bg-white/95 px-4 pt-2 pb-6 backdrop-blur-xl dark:border-blue-950/60 dark:bg-[#0B0F19]/95 lg:hidden">
           <div className="flex flex-col space-y-2">
             {navItems.map((item) => (
               <a

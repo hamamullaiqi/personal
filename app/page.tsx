@@ -4,6 +4,7 @@ import { Hero } from "@/components/hero";
 import { CapabilitiesBento } from "@/components/capabilities-bento";
 import { CaseStudies } from "@/components/case-studies";
 import { EngineeringPrinciples } from "@/components/engineering-principles";
+import { EngineeringNotes } from "@/components/engineering-notes";
 import { ExperienceTimeline } from "@/components/experience-timeline";
 import { BookingSection } from "@/components/booking-section";
 import { Footer } from "@/components/footer";
@@ -17,6 +18,7 @@ export default function HomePage() {
         <CapabilitiesBento />
         <CaseStudies />
         <EngineeringPrinciples />
+        <EngineeringNotes />
         <ExperienceTimeline />
         <BookingSection />
       </main>
