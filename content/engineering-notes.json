@@ -35,6 +35,76 @@
     ]
   },
   {
+    "slug": "boilerplates-and-design-system-migration-antd-to-shadcn",
+    "date": "2026-10-08",
+    "readTime": "6 min read",
+    "readTime_id": "6 menit baca",
+    "category": "Frontend Engineering & DX",
+    "category_id": "Frontend Engineering & DX",
+    "title": "Starting from Scratch vs. Building Boilerplates: Lessons from Migrating Ant Design to shadcn/ui",
+    "title_id": "Membangun Boilerplate Internal Saat Sering Memulai Project dari Nol & Migrasi Ant Design ke shadcn/ui",
+    "excerpt": "Why building custom internal templates accelerated our prototyping by 4x and how we managed component library shifts from heavyweight bundles to composable Tailwind primitives.",
+    "excerpt_id": "Alasan kami merancang template internal agar tidak memulai dari nol di setiap project, serta tips praktis saat migrasi dari Ant Design ke shadcn/ui.",
+    "tags": ["Next.js", "shadcn/ui", "Ant Design", "Tailwind CSS", "DX", "Boilerplate"],
+    "keyTakeaway": "Standardizing an in-house starter template with pre-configured auth, tables, and headless primitives cuts prototype-to-production time from weeks to days.",
+    "keyTakeaway_id": "Membuat starter boilerplate sendiri dengan layout, tabel data, dan komponen headless siap pakai memangkas waktu prototyping dari hitungan minggu menjadi beberapa hari.",
+    "sections": [
+      {
+        "heading": "1. The Bottleneck: Starting from Scratch on Every Enterprise Tool",
+        "heading_id": "1. Masalah: Berulang Kali Menyiapkan Project Baru dari Titik Nol",
+        "body": "In fast-moving environments, new operational utilities, internal portals, and ground-support tools frequently need to be spin up from scratch. Early on, developers spent days re-configuring TypeScript configs, ESLint rules, auth token refresh interceptors, responsive layout shells, and basic table filters before writing a single line of business logic.",
+        "body_id": "Dalam lingkungan kerja enterprise yang dinamis, sering kali muncul kebutuhan membuat tools internal, dashboard monitoring, atau portal operasional baru dari awal (scratch). Di awal, tim sering menghabiskan berhari-hari hanya untuk setup konfigurasi TypeScript, routing, token refresh interceptor, layout dasar, dan tabel filter sebelum mulai menyentuh logic bisnis."
+      },
+      {
+        "heading": "2. Shifting from Ant Design to shadcn/ui + Tailwind CSS",
+        "heading_id": "2. Tantangan Migrasi: Dari Ant Design Menuju shadcn/ui & Tailwind CSS",
+        "body": "Many of our earlier systems relied on Ant Design for quick out-of-the-box data tables and modals. While convenient initially, customizing dark modes, overriding heavy CSS-in-JS style specificity, and tree-shaking bundle sizes became painful. Shifting towards shadcn/ui (Radix primitives + Tailwind CSS) gave us complete ownership of component code, zero runtime style overhead, and superior keyboard accessibility.",
+        "body_id": "Banyak sistem awal kami menggunakan Ant Design karena komponen tabel dan modalnya instan. Namun seiring berkembangnya kebutuhan, kustomisasi styling (terutama dark mode), ukuran bundle file yang besar, dan CSS override mulai membebani performa. Migrasi ke shadcn/ui (Radix UI + Tailwind CSS) memberikan kendali 100% atas source code komponen, styling yang ringan tanpa CSS runtime, dan aksesibilitas keyboard yang jauh lebih baik."
+      },
+      {
+        "heading": "3. The Solution: An In-House Boilerplate for Rapid Prototyping",
+        "heading_id": "3. Solusinya: Merancang Template / Boilerplate Standar Tim",
+        "body": "To solve both the component inconsistency and the setup fatigue, we built our own modular starter template. It bundles accessible shadcn/ui base primitives, predefined data table filters, standard form validation, and dark/light theming. Now, when a new stakeholder requests a prototype, we spin it up in hours instead of days, ensuring UI consistency across the entire company portfolio.",
+        "body_id": "Sebagai solusi, kami merangkum semua standar itu ke dalam satu starter boilerplate internal. Template ini sudah dilengkapi komponen dasar shadcn/ui, filter tabel data yang modular, validasi form standar, dan sistem tema. Sekarang, saat stakeholder membutuhkan prototype atau sistem baru, kami bisa menyiapkannya dalam hitungan jam dengan tampilan yang seragam dan konsisten."
+      }
+    ]
+  },
+  {
+    "slug": "safe-production-rollouts-api-versioning-and-admin-preview",
+    "date": "2026-10-01",
+    "readTime": "6 min read",
+    "readTime_id": "6 menit baca",
+    "category": "System Architecture & Release",
+    "category_id": "Arsitektur Rilis & Keamanan Sistem",
+    "title": "Zero-Downtime Rollouts in Production-Only Data: API Versioning and Role-Gated Admin Previews",
+    "title_id": "Strategi Rilis Aman Saat Data Hanya Ada di Produksi: Versioning API & Tampilan Khusus Admin",
+    "excerpt": "How to safely release UI and API changes without breaking live operations when you cannot easily replicate full enterprise production data in lower environments.",
+    "excerpt_id": "Cara menguji perubahan API dan UI secara aman pada data produksi nyata menggunakan sistem versioning dan hak akses preview khusus admin sebelum rilis resmi.",
+    "tags": ["API Versioning", "RBAC", "Production Release", "Feature Gating", "Reliability"],
+    "keyTakeaway": "When data only exists in production, never replace live endpoints in-place. Run versioned parallel APIs and role-gated UI previews so internal teams verify with real data before general rollout.",
+    "keyTakeaway_id": "Ketika data hanya ada di produksi, jangan langsung menimpa API atau tampilan aktif. Jalankan versioning paralel dan hak akses preview untuk admin agar bisa diverifikasi dulu sebelum dipakai seluruh pengguna.",
+    "sections": [
+      {
+        "heading": "1. The Dilemma: Testing Against Production-Only Reality",
+        "heading_id": "1. Dilema: Data Nyata yang Sangat Kompleks Hanya Ada di Produksi",
+        "body": "In aviation and enterprise logistics, operational data is deeply intertwined with external live airline PNRs, live telemetry, and historic customs records. Staging environments rarely mirror the exact edge-case payloads of live operations. Modifying an active API endpoint or UI layout directly risks catastrophic downtime and counter delays during flight departures.",
+        "body_id": "Pada sistem logistik dan bandara, data operasional sangat kompleks karena terhubung langsung ke server maskapai, data radar kargo, dan histori data resmi. Sangat sulit meniru variasi data ini di server staging. Jika kita langsung mengubah API atau tampilan yang sedang aktif di produksi, sedikit saja ada bug bisa langsung menghentikan operasional di konter."
+      },
+      {
+        "heading": "2. Strict Parallel API Versioning (/v1 vs /v2)",
+        "heading_id": "2. Penerapan Versioning API Paralel Tanpa Mengganggu Versi Aktif",
+        "body": "Instead of in-place payload updates, every contract modification is deployed under a new versioned endpoint (/api/v2/...). The existing /api/v1/ contract remains completely untouched and active. This decouples backend deployments from frontend releases, ensuring active kiosk terminals and handheld scanners experience zero regression while the new version is being verified.",
+        "body_id": "Daripada mengubah format response endpoint yang sedang berjalan, setiap modifikasi API dibuat pada endpoint versi baru (misalnya /api/v2/...). Endpoint versi lama (/api/v1/) tetap dibiarkan berjalan normal tanpa diutak-atik. Dengan begitu, mesin kiosk dan alat scanner di lapangan yang masih memakai versi lama tidak akan error saat backend diperbarui."
+      },
+      {
+        "heading": "3. Role-Gated Admin Preview & One-Click Component Cutover",
+        "heading_id": "3. Tampilan Preview Khusus Admin Sebelum Penggantian Komponen Resmi",
+        "body": "On the frontend, new UI components consuming /v2 endpoints are wrapped in Role-Based Access Control (RBAC) feature gates. Regular floor operators continue using the trusted production interface, while tech leads and admin reviewers can toggle the preview mode to test real production datasets safely. Once verified with zero bugs, the component replaces the old one for all users with a simple flag flip.",
+        "body_id": "Di sisi antarmuka, tampilan baru yang membaca API v2 dipagari dengan hak akses (RBAC). Petugas biasa tetap melihat tampilan lama yang stabil, sedangkan tim lead atau admin bisa mengaktifkan mode preview untuk menguji komponen baru langsung pada data produksi nyata. Setelah semua diverifikasi aman dan bebas bug, barulah komponen/API baru tersebut dibuka ke seluruh pengguna untuk menggantikan versi lama."
+      }
+    ]
+  },
+  {
     "slug": "scaling-mongodb-aggregations-for-realtime-dashboards",
     "date": "2026-09-28",
     "readTime": "6 min read",
@@ -105,4 +175,3 @@
     ]
   }
 ]
-
