@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 export type Language = "en" | "id";
 
@@ -31,6 +32,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setLangState(newLang);
     window.localStorage.setItem("portfolio-lang", newLang);
     document.documentElement.lang = newLang;
+    trackEvent("switch_language", { language: newLang });
   };
 
   const toggleLang = () => {

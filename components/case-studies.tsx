@@ -17,6 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CaseStudy, CaseStudyModal } from "@/components/case-study-modal";
 import { useLanguage } from "@/components/language-provider";
+import { trackEvent } from "@/lib/analytics";
 
 export function CaseStudies() {
   const { lang } = useLanguage();
@@ -25,6 +26,10 @@ export function CaseStudies() {
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleOpenStudy = (study: CaseStudy) => {
+    trackEvent("open_case_study_modal", {
+      case_study_slug: study.slug,
+      case_study_title: study.title,
+    });
     setSelectedStudy(study);
     setModalOpen(true);
   };
@@ -211,7 +216,15 @@ export function CaseStudies() {
                           size="sm"
                           className="gap-1.5"
                         >
-                          <Link href={`/case-studies/${study.slug}`}>
+                          <Link
+                            href={`/case-studies/${study.slug}`}
+                            onClick={() =>
+                              trackEvent("open_case_study_page", {
+                                case_study_slug: study.slug,
+                                case_study_title: study.title,
+                              })
+                            }
+                          >
                             <span>
                               {lang === "id" ? "Baca Selengkapnya" : "Full Page"}
                             </span>

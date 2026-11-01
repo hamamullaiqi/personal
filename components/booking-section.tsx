@@ -24,6 +24,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useLanguage } from "@/components/language-provider";
+import { trackEvent } from "@/lib/analytics";
 
 export function BookingSection() {
   const { lang } = useLanguage();
@@ -49,6 +50,10 @@ export function BookingSection() {
       });
       const data = await res.json();
       if (res.ok) {
+        trackEvent("submit_contact_form", {
+          has_company: Boolean(formState.company),
+          language: lang,
+        });
         setStatus("success");
         setFeedbackMessage(
           lang === "id"
@@ -147,6 +152,12 @@ export function BookingSection() {
                     href="https://linkedin.com/in/hamamullaiqi"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() =>
+                      trackEvent("click_social", {
+                        platform: "linkedin",
+                        location: "contact_card",
+                      })
+                    }
                     className="group flex flex-col justify-between rounded-xl border border-blue-200 bg-blue-50/60 p-4 transition-all hover:border-blue-500 hover:bg-blue-50 hover:shadow-md dark:border-blue-500/30 dark:bg-blue-950/25 dark:hover:border-sky-400/60 dark:hover:bg-blue-950/40"
                   >
                     <div className="flex items-center justify-between">
@@ -172,6 +183,12 @@ export function BookingSection() {
 
                   <a
                     href="mailto:hamamullaiqi@gmail.com"
+                    onClick={() =>
+                      trackEvent("click_social", {
+                        platform: "email",
+                        location: "contact_card",
+                      })
+                    }
                     className="group flex flex-col justify-between rounded-xl border border-slate-200 bg-slate-50/80 p-4 transition-all hover:border-blue-500 hover:bg-blue-50/40 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-950/60 dark:hover:border-blue-500/50 dark:hover:bg-blue-950/20"
                   >
                     <div className="flex items-center justify-between">

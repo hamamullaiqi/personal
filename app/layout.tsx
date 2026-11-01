@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/language-provider";
+import { GoogleAnalytics } from "@/components/google-analytics";
 
 const siteUrl = "https://hamamullaiqi.dev";
 
@@ -124,6 +125,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gaId =
+    process.env.GA_MEASUREMENT_ID ||
+    process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ||
+    "";
+
   return (
     <html lang="en" suppressHydrationWarning className="dark">
       <head>
@@ -133,6 +139,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans min-h-screen antialiased selection:bg-blue-600 selection:text-white">
+        <GoogleAnalytics gaId={gaId} />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

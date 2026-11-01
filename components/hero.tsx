@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/language-provider";
+import { trackEvent } from "@/lib/analytics";
 
 export function Hero() {
   const { lang } = useLanguage();
@@ -139,6 +140,12 @@ export function Hero() {
                   href="https://linkedin.com/in/hamamullaiqi"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackEvent("click_social", {
+                      platform: "linkedin",
+                      location: "hero_cta",
+                    })
+                  }
                 >
                   <Linkedin className="h-4 w-4" />
                   <span>
@@ -149,13 +156,29 @@ export function Hero() {
                 </a>
               </Button>
               <Button asChild variant="outline" size="lg" className="gap-2">
-                <a href="mailto:hamamullaiqi@gmail.com">
+                <a
+                  href="mailto:hamamullaiqi@gmail.com"
+                  onClick={() =>
+                    trackEvent("click_social", {
+                      platform: "email",
+                      location: "hero_cta",
+                    })
+                  }
+                >
                   <Mail className="h-4 w-4" />
                   <span>{lang === "id" ? "Kirim Email" : "Send an Email"}</span>
                 </a>
               </Button>
               <Button asChild variant="ghost" size="lg" className="gap-2">
-                <a href="#case-studies">
+                <a
+                  href="#case-studies"
+                  onClick={() =>
+                    trackEvent("click_cta", {
+                      label: "view_case_studies",
+                      location: "hero",
+                    })
+                  }
+                >
                   <span>
                     {lang === "id" ? "Lihat Studi Kasus" : "View Case Studies"}
                   </span>
