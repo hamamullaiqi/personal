@@ -1,0 +1,207 @@
+[
+  {
+    "slug": "airport-self-service-kiosk-engine",
+    "id": "01",
+    "title": "Airport Self-Service Check-in Kiosk Engine",
+    "title_id": "Sistem Backend Kiosk Self Check-in Bandara",
+    "category": "Backend & Mission-Critical Integration",
+    "category_id": "Backend & Integrasi Sistem Maskapai",
+    "shortSummary": "High-availability backend engine handling concurrent multi-passenger check-in transactions and real-time multi-airline reservation integrations under strict 24/7 airport SLAs.",
+    "shortSummary_id": "Backend engine untuk layanan kiosk mandiri di bandara yang menangani proses check-in banyak penumpang sekaligus dan terhubung langsung ke sistem reservasi berbagai maskapai secara non-stop 24/7.",
+    "techStack": [
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+      "Airline Integrations",
+      "24/7 SLA"
+    ],
+    "metrics": [
+      { "label": "Availability Target", "value": "24/7 SLA" },
+      { "label": "Transaction Mode", "value": "Multi-Pax Concurrent" },
+      { "label": "Fault Tolerance", "value": "Auto Rollback & Retry" }
+    ],
+    "metrics_id": [
+      { "label": "Target Uptime", "value": "24/7 Non-Stop" },
+      { "label": "Kapasitas Transaksi", "value": "Multi-Penumpang" },
+      { "label": "Keandalan Sistem", "value": "Auto Retry & Rollback" }
+    ],
+    "challenge": "Airport kiosk hardware requires continuous 24/7 availability. Network instability between physical airport kiosks and remote airline reservation systems risked session drops and lost booking records during high-traffic windows.",
+    "challenge_id": "Kiosk check-in di bandara harus selalu siap dipakai 24 jam penuh. Masalahnya, koneksi antara mesin kiosk di terminal dengan server reservasi maskapai kadang tidak stabil. Kalau koneksi tiba-tiba putus di jam sibuk, sesi check-in bisa gagal di tengah jalan dan data booking penumpang berisiko tidak sinkron.",
+    "solutions": [
+      "Built an Express.js backend engine managing multi-passenger check-in transactions concurrently.",
+      "Integrated multi-airline reservation APIs for automated PNR lookup, verification, seat allocation, and boarding pass dispatch.",
+      "Implemented exponential backoff retries, state-preserving session fallbacks, and transaction rollback mechanics."
+    ],
+    "solutions_id": [
+      "Membangun backend engine berbasis Express.js yang mampu memproses transaksi check-in banyak penumpang dalam satu waktu secara paralel.",
+      "Mengintegrasikan API dari berbagai maskapai untuk proses pencarian kode booking (PNR), validasi data penumpang, pemilihan kursi, hingga cetak boarding pass.",
+      "Menerapkan mekanisme auto-retry bertahap (exponential backoff), penyimpanan sesi sementara, dan rollback otomatis supaya transaksi tetap aman meski jaringan sempat terputus."
+    ],
+    "architectureHighlights": [
+      "Idempotent PNR reservation state machine preventing duplicate seat assignment or double boarding pass issuance during intermittent packet loss.",
+      "Unified adapter layer normalizing heterogeneous airline PSS (Passenger Service System) payloads into a single predictable contract for kiosk touchscreens.",
+      "Structured telemetry and real-time health probes enabling proactive circuit-breaking before terminal queues build up."
+    ],
+    "architectureHighlights_id": [
+      "Alur transaksi dibuat idempoten agar tidak terjadi kursi ganda atau boarding pass tercetak dua kali saat koneksi sedang lambat.",
+      "Membuat satu layer adaptor terpusat untuk menyeragamkan format data dari sistem reservasi (PSS) tiap maskapai yang berbeda-beda sebelum dikirim ke layar kiosk.",
+      "Monitoring kondisi layanan secara real-time untuk mendeteksi gangguan lebih awal sebelum antrean penumpang di bandara menumpuk."
+    ],
+    "result": "Delivered uninterrupted check-in operations during peak flight schedules, preventing counter congestion and meeting strict SLA uptime.",
+    "result_id": "Proses check-in mandiri di bandara tetap berjalan lancar di jam-jam keberangkatan paling padat, mengurangi antrean di konter manual, dan menjaga uptime layanan sesuai standar SLA 24/7."
+  },
+  {
+    "slug": "cis-2-realtime-cargo-analytics-dashboard",
+    "id": "02",
+    "title": "CIS 2.0 & Real-Time Cargo Analytics Dashboard",
+    "title_id": "CIS 2.0 & Dashboard Analitik Kargo Real-Time",
+    "category": "Full-Stack & Data Analytics",
+    "category_id": "Full-Stack & Data Analytics",
+    "shortSummary": "Executive air cargo intelligence platform synthesizing millions of operational logs into sub-second interactive analytics without impacting transactional database throughput.",
+    "shortSummary_id": "Dashboard eksekutif yang mengolah jutaan data log operasional kargo udara menjadi laporan visual interaktif dalam hitungan detik tanpa membebani database utama.",
+    "techStack": [
+      "React",
+      "Node.js",
+      "MongoDB Aggregations",
+      "Ant Design",
+      "Performance Tuning"
+    ],
+    "metrics": [
+      { "label": "Query Latency", "value": "Sub-Second" },
+      { "label": "Data Volume", "value": "Millions of Logs" },
+      { "label": "Reporting Shift", "value": "Real-Time vs EOD" }
+    ],
+    "metrics_id": [
+      { "label": "Kecepatan Query", "value": "< 1 Detik" },
+      { "label": "Skala Data", "value": "Jutaan Baris Log" },
+      { "label": "Proses Laporan", "value": "Otomatis & Real-Time" }
+    ],
+    "challenge": "Heavy day-to-day air cargo operations generated millions of operational logs. Leadership required sub-second visibility into production volume and client-tier revenue without causing read contention on the operational database.",
+    "challenge_id": "Operasional kargo udara setiap harinya menghasilkan jutaan data log transaksi. Tim manajemen butuh melihat performa tonase dan pendapatan tiap klien secara langsung (real-time), tapi kalau query analitik yang berat dijalankan langsung di database utama, proses transaksi di lapangan bisa ikut melambat.",
+    "solutions": [
+      "Designed an executive analytics dashboard using React and Ant Design.",
+      "Structured multi-stage MongoDB aggregation pipelines to summarize historical data efficiently.",
+      "Optimized indexing strategies and implemented query caching to minimize database execution time."
+    ],
+    "solutions_id": [
+      "Membangun dashboard analitik interaktif menggunakan React dan Ant Design yang mudah dibaca oleh tim operasional maupun manajemen.",
+      "Merancang pipeline agregasi bertingkat di MongoDB untuk mengolah dan merangkum data historis berjumlah besar dengan cepat.",
+      "Merapikan struktur indexing database dan menambahkan fitur caching agar query laporan yang berulang tidak terus-menerus membebani server."
+    ],
+    "architectureHighlights": [
+      "Compound index alignment and $match/$project early-stage filtering across multi-million document collections to eliminate collection scans.",
+      "Decoupled analytical read pathways and intelligent TTL caching so live cargo scanning terminals experience zero write lock contention.",
+      "Interactive drill-down views in React + Ant Design for tonnage trends, airline partner SLA tracking, and client-tier revenue attribution."
+    ],
+    "architectureHighlights_id": [
+      "Optimasi compound index serta pemfilteran data di tahap awal ($match & $project) pada koleksi jutaan dokumen agar query tidak melakukan scan penuh.",
+      "Memisahkan beban pembacaan data analitik dengan caching terjadwal (TTL) supaya aktivitas input kargo di lapangan tetap responsif tanpa hambatan.",
+      "Visualisasi data interaktif untuk memantau tren tonase harian, performa SLA tiap maskapai mitra, hingga rincian kontribusi pendapatan per klien."
+    ],
+    "result": "Replaced manual end-of-day spreadsheet reconciliation with real-time, interactive insights for flight cargo capacity planning.",
+    "result_id": "Tim manajemen tidak perlu lagi menunggu rekap Excel manual di akhir hari—seluruh data kapasitas dan performa kargo kini bisa dipantau secara langsung kapan saja."
+  },
+  {
+    "slug": "awares-cargo-warehouse-frontend",
+    "id": "03",
+    "title": "AWARES — Air Cargo Warehouse Management UI",
+    "title_id": "AWARES — Sistem Manajemen Gudang Kargo Udara",
+    "category": "Frontend Engineering & Enterprise Logistics",
+    "category_id": "Frontend Engineering & Logistik Enterprise",
+    "shortSummary": "High-responsiveness frontend platform ensuring upstream-to-downstream data consistency across multi-stage air cargo warehouse workflows and third-party logistics integrations.",
+    "shortSummary_id": "Aplikasi frontend untuk operasional gudang kargo udara yang menjaga konsistensi data dari hulu ke hilir sekaligus menyinkronkan status kargo dengan berbagai sistem pihak ketiga.",
+    "techStack": [
+      "React",
+      "Tailwind CSS",
+      "TypeScript",
+      "3rd-Party API Integration",
+      "State Synchronization"
+    ],
+    "metrics": [
+      { "label": "Engineering Scope", "value": "Frontend Architecture" },
+      { "label": "Core Focus", "value": "End-to-End Data Sync" },
+      { "label": "Ecosystem", "value": "3rd-Party Integrations" }
+    ],
+    "metrics_id": [
+      { "label": "Peran Utama", "value": "Frontend Architecture" },
+      { "label": "Fokus Teknis", "value": "Konsistensi Hulu-Hilir" },
+      { "label": "Integrasi", "value": "Multi-Sistem Pihak ke-3" }
+    ],
+    "challenge": "Maintaining strict upstream-to-downstream data consistency across the air cargo lifecycle (from cargo acceptance, weighing, and storage allocation to final flight dispatch) while synchronizing state with multiple external third-party stakeholder systems where payload discrepancies or out-of-order updates could disrupt warehouse operations.",
+    "challenge_id": "Tantangan terbesar di operasional gudang kargo adalah menjaga data tetap konsisten dari hulu ke hilir—mulai dari barang masuk (acceptance), penimbangan, penempatan di gudang, sampai akhirnya naik ke pesawat. Di saat yang sama, aplikasi harus terus sinkron dengan berbagai sistem pihak ketiga dari para stakeholder terkait. Sedikit saja ada selisih data antar-sistem, proses pengiriman kargo bisa tertahan.",
+    "solutions": [
+      "Engineered deterministic client-side state orchestration and strict payload validation in React and TypeScript to keep cargo records consistent from initial intake to outbound dispatch.",
+      "Integrated multi-party REST APIs on the frontend with real-time reconciliation views, immediately surfacing data mismatches between internal warehouse states and third-party systems.",
+      "Built ergonomic, step-locked UI workflows in Tailwind CSS that prevent invalid downstream transitions until upstream third-party verifications are confirmed."
+    ],
+    "solutions_id": [
+      "Merancang pengelolaan state di sisi frontend (React & TypeScript) dengan validasi ketat di setiap tahap, sehingga data kargo tetap utuh dan konsisten dari awal barang diterima hingga dikirim.",
+      "Mengintegrasikan berbagai REST API pihak ketiga ke dalam antarmuka terpadu lengkap dengan indikator status sinkronisasi untuk langsung mendeteksi jika ada data yang belum cocok.",
+      "Membuat alur kerja bertahap (step-by-step workflow) menggunakan Tailwind CSS yang mengunci proses berikutnya sebelum verifikasi data dari sistem pihak ketiga di tahap sebelumnya selesai."
+    ],
+    "architectureHighlights": [
+      "End-to-end client data normalization layer translating heterogeneous third-party API responses into a unified, type-safe frontend state model.",
+      "Automated cache invalidation and optimistic UI reconciliation ensuring operators always act on the latest synchronized air waybill (AWB) status.",
+      "Visual audit checkpoints and status indicators across upstream and downstream stages to eliminate manual cross-checking across external portals."
+    ],
+    "architectureHighlights_id": [
+      "Menyeragamkan berbagai format response API dari pihak ketiga di sisi frontend agar mudah dikelola dan minim bug.",
+      "Sinkronisasi data otomatis dan pembaruan status Air Waybill (AWB) secara real-time supaya petugas gudang selalu melihat kondisi data paling mutakhir.",
+      "Penanda status visual di tiap titik proses (checkpoint) dari hulu ke hilir, sehingga operator tidak perlu lagi mengecek banyak portal eksternal satu per satu."
+    ],
+    "result": "Eliminated upstream-to-downstream data drift across third-party integrations and accelerated ground cargo handoffs through a reliable, single-source-of-truth operator interface.",
+    "result_id": "Meminimalkan selisih data antar-sistem dari hulu ke hilir dan mempercepat proses serah terima barang di gudang karena seluruh informasi sudah terpusat di satu layar."
+  },
+  {
+    "slug": "sipp-passenger-security-profiling-system",
+    "id": "04",
+    "title": "SIPP — Passenger Profiling & Security System",
+    "title_id": "SIPP — Sistem Profiling & Keamanan Penumpang",
+    "category": "Full-Stack Engineering & Aviation Security",
+    "category_id": "Full-Stack Engineering & Keamanan Penerbangan",
+    "shortSummary": "End-to-end full-stack passenger risk screening and security intelligence platform fortified with granular Role-Based Access Control (RBAC) and low-latency query pipelines.",
+    "shortSummary_id": "Platform full-stack untuk skrining profil risiko penumpang penerbangan yang dilengkapi pengaturan hak akses berlapis (RBAC) dan pencarian data super cepat.",
+    "techStack": [
+      "React",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "RBAC",
+      "Data Analytics"
+    ],
+    "metrics": [
+      { "label": "Engineering Scope", "value": "Full-Stack System" },
+      { "label": "Security Model", "value": "Granular RBAC" },
+      { "label": "Screening UX", "value": "Low-Latency Query" }
+    ],
+    "metrics_id": [
+      { "label": "Peran Utama", "value": "Full-Stack Development" },
+      { "label": "Keamanan Akses", "value": "Multi-Level RBAC" },
+      { "label": "Performa Cari", "value": "Respon Instan" }
+    ],
+    "challenge": "Aviation security personnel required low-latency full-stack interfaces and reliable backend query services to screen passenger risk profiles instantly, while strictly enforcing data authorization across sensitive profiling records.",
+    "challenge_id": "Tim keamanan penerbangan membutuhkan sistem yang bisa menampilkan profil risiko penumpang secara cepat saat proses pemeriksaan berlangsung. Karena data yang diakses bersifat sangat sensitif, sistem ini wajib memiliki pembatasan hak akses yang ketat agar setiap petugas hanya bisa membuka data sesuai kewenangannya.",
+    "solutions": [
+      "Architected both the Node.js/Express.js backend services and the responsive React + Tailwind CSS screening interface.",
+      "Implemented granular Role-Based Access Control (RBAC) across API endpoints and frontend views to enforce strict data authorization on sensitive passenger records.",
+      "Optimized backend search and analytical query endpoints to deliver instant risk profile lookups and audit trails for security officers."
+    ],
+    "solutions_id": [
+      "Membangun layanan secara end-to-end: mulai dari backend API dengan Node.js/Express.js hingga antarmuka kerja yang ringkas menggunakan React dan Tailwind CSS.",
+      "Menerapkan Role-Based Access Control (RBAC) secara menyeluruh, baik di level endpoint API maupun di tampilan menu frontend, untuk menjaga kerahasiaan data penumpang.",
+      "Mengoptimalkan query pencarian dan filter di sisi backend agar proses pengecekan daftar penumpang dan riwayat profil tetap cepat disertai pencatatan log aktivitas (audit trail)."
+    ],
+    "architectureHighlights": [
+      "Multi-layered RBAC enforcement at both the Node.js middleware layer and React route/component level to protect confidential aviation security data.",
+      "Low-latency search and filtering pipelines enabling security personnel to cross-reference passenger manifests and risk indicators in real time.",
+      "Comprehensive activity logging and structured permission boundaries compliant with strict aviation security governance."
+    ],
+    "architectureHighlights_id": [
+      "Validasi hak akses ganda (di middleware Node.js dan di route React) untuk memastikan tidak ada celah akses di luar otoritas pengguna.",
+      "Pencarian data dengan latensi rendah untuk mencocokkan manifes penumpang dengan indikator profil risiko secara real-time.",
+      "Pencatatan riwayat akses (activity log) yang rapi dan terstruktur untuk memenuhi standar audit keamanan penerbangan."
+    ],
+    "result": "Reduced security screening friction and strengthened data governance through an integrated, RBAC-fortified full-stack platform.",
+    "result_id": "Mempercepat alur skrining penumpang oleh tim keamanan di lapangan sekaligus memastikan keamanan dan tata kelola akses data sensitif tetap terjaga."
+  }
+]
